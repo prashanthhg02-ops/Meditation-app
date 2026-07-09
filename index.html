@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meditation • Breath & Timer</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <h1>Meditation</h1>
+          <p class="sub">Breathing guide + session timer</p>
+        </div>
+        <div class="pill-row">
+          <span class="pill" id="statusPill">Ready</span>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section class="card">
+          <h2>Breathing Guide</h2>
+          <div class="controls">
+            <label>
+              Pattern
+              <select id="patternSelect">
+                <option value="box-4-4-4-4">Box (4 In / 4 Hold / 4 Out / 4 Hold)</option>
+                <option value="4-6">Calm (4 In / 6 Out)</option>
+                <option value="4-4">Steady (4 In / 4 Out)</option>
+                <option value="6-6">Slow (6 In / 6 Out)</option>
+                <option value="breathe-custom">Custom</option>
+              </select>
+            </label>
+
+            <div class="row" id="customRow" style="display:none;">
+              <label>
+                In (sec)
+                <input id="customIn" type="number" min="1" max="30" value="4" />
+              </label>
+              <label>
+                Hold (sec)
+                <input id="customHold" type="number" min="0" max="30" value="0" />
+              </label>
+              <label>
+                Out (sec)
+                <input id="customOut" type="number" min="1" max="30" value="6" />
+              </label>
+            </div>
+
+            <label class="toggle">
+              <input type="checkbox" id="soundToggle" />
+              <span>Chime each phase</span>
+            </label>
+          </div>
+
+          <div class="breathViz" aria-live="polite">
+            <div class="orb" id="orb" aria-hidden="true"></div>
+            <div class="phase">
+              <div class="phaseName" id="phaseName">—</div>
+              <div class="phaseTime">
+                <span id="phaseSeconds">—</span> sec
+              </div>
+            </div>
+          </div>
+
+          <div class="timerRow">
+            <div class="timerBlock">
+              <div class="timerLabel">Session</div>
+              <div class="timerTime" id="sessionTime">00:00</div>
+            </div>
+
+            <div class="timerActions">
+              <label class="inline">
+                Duration (min)
+                <select id="durationSelect">
+                  <option value="5">5</option>
+                  <option value="10" selected>10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                </select>
+              </label>
+
+              <div class="btnRow">
+                <button class="btn primary" id="startBtn">Start</button>
+                <button class="btn" id="pauseBtn" disabled>Pause</button>
+                <button class="btn danger" id="resetBtn" disabled>Reset</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card history">
+          <h2>History</h2>
+          <p class="muted">Saved when you complete a session.</p>
+          <div id="historyList" class="historyList">
+            <!-- injected -->
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Make space. Breathe gently.</span>
+      </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+
